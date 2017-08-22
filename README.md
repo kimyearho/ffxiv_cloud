@@ -21,7 +21,7 @@
  
 <br/>
 
-[다운로드 페이지](https://github.com/kimyearho/WebtoonDownloadManager/releases/tag/v0.1)
+[다운로드 페이지](https://github.com/kimyearho/ffxivclound/releases/tag/v0.1)
 
 <br/>
 
