@@ -1,4 +1,4 @@
-# FINAL FANTASY XIV - Interface Clount
+# FINAL FANTASY XIV - Interface Clound
 > 파이널판타지14 글로벌 UI 클라우드 입니다.
 <br/>
 
