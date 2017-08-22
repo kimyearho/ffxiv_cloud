@@ -7,7 +7,7 @@
 ## 기능정의:
 
  * 1계정 1캐릭 지원 (복수 캐릭 지원X)
- * UI서버 업로드 및 UI적용 및 백업 기능 지원
+ * UI 및 매크로등 설정정보 서버저장 / 적용 및 백업 기능 지원
 
 <br/>
 
@@ -21,7 +21,13 @@
  
 <br/>
 
-[다운로드 페이지](https://github.com/kimyearho/ffxivclound/releases/tag/v0.1)
+## 설치
+ * 설치 후 바탕화면 아이콘실행
+
+<br/>
+
+## 다운로드
+[다운로드 페이지](https://github.com/kimyearho/WebtoonDownloadManager/releases/tag/v0.1)
 
 <br/>
 
