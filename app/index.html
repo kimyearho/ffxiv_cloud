@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>FINAL FANTASY XIV - UI REPOSITORY</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./public/assets/styles.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: rgba(221, 221, 221, 0.22);
+        }
+        .btn_c {
+            width: 130px;
+            display: inline-block;
+        }
+        .btn-success,
+        .btn-danger {
+            -webkit-box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow:    0px 3px 0px rgba(0, 0, 0, 0.3);
+            box-shadow:         0px 3px 0px rgba(0, 0, 0, 0.3);
+        }
+        .btn-success:active,
+        .btn-danger:active {
+            margin-top: 3px;
+            margin-bottom: -3px;
+        }
+    </style>
+    <script>window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min');</script>
+</head>
+<body>
+<script>
+    require('electron').ipcRenderer.on('session_id', (event, data) => {
+        if (data[0].char_yn == 'N') {
+            $('#session_form').attr('email', data[0].session);
+            $('#session_form').html(data[0].session + ' / 미사용');
+            $('#file-input').show();
+        } else {
+            $('#session_form').html(data[0].session);
+            $('#file-input').remove();
+            $('#selectedFiles').addClass('alert-info');
+            $('#session_form').attr('code', data[0].char_code);
+            $('#session_form').attr('email', data[0].session);
+            $('#selectedFiles').html('최근 저장 일자: ' + data[0].char_dt + ' / ' + data[0].char_code);
+        }
+    });
+</script>
+<ol class="breadcrumb" id="session_form" email="" code=""></ol>
+<div class="container">
+    <div class="row product" style="margin-top: 50px">
+        <div class="col-md-5 col-md-offset-0">
+            <img class="img-responsive"
+                 src="http://img.finalfantasyxiv.com/lds/promo/h/5/jMux8ZqzKMhECxQuhgu4NrbqrA.png" style="box-shadow: 7px 5px 3px rgba(0, 0, 0, 0.3);">
+        </div>
+        <div class="col-lg-7 col-md-7">
+            <h2 data-bs-hover-animate="pulse" style="font-family:'News Cycle';font-weight: 700;">FF XIV Cloud - v0.1</h2>
+            <p>게임 실행 전 미리 적용하세요.</p>
+            <div id="selectedFiles">
+                <input type="file" id="file-input" style="width:250px;" multiple/>
+            </div>
+            <div class="alert-danger" style="margin-top: 10px;">
+                현재 로컬경로: <span id="document_path"></span>
+            </div>
+            <div class="btn_c">
+                <a id="ui_accept" class="btn btn-success btn-block" type="button"
+                   style="font-family:'News Cycle';margin-top:20px;">
+                    UI 적용
+                </a>
+            </div>
+            <div class="btn_c" style="margin-left: 30px;">
+                <a id="ui_backup" class="btn btn-danger btn-block" type="button"
+                   style="font-family:'News Cycle';margin-top:20px;">
+                    UI 백업
+                </a>
+            </div>
+        </div>
+    </div>
+    <input type="file" id="files" style="width:250px;display: none;" multiple/>
+</div>
+<script type="text/javascript">require('./source/server/renderer')</script>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./public/assets/uppie.js"></script>
+<script>
+
+    let domain = 'http://nodestory.com';
+
+    let uppie = new Uppie();
+
+    // UI 업로드
+    uppie(document.querySelector('#file-input'), function (event, formData, files) {
+        let user_email = $('#session_form').attr('email');
+        let fullPath = document.getElementById("file-input").files[0].path;
+        let end = fullPath.lastIndexOf('\\');
+        let first = fullPath.substring(0, end).lastIndexOf('\\') + 1;
+        let code = fullPath.substring(first, end);
+
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', domain + '/api/v0.1/hudLayoutUpload?code=' + code + '&email=' + user_email);
+        xhr.send(formData);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                alert('업로드 완료');
+
+                let userEmail = $('#session_form').attr('email');
+                $.get(domain + '/api/v0.1/getUser?userEmail=' + userEmail, function (data) {
+                    $('#session_form').html(data.user_email);
+                    $('#file-input').remove();
+                    $('#selectedFiles').addClass('alert-info');
+                    $('#session_form').attr('code', data.user_email);
+                    $('#session_form').attr('code', data.char_code);
+                    $('#selectedFiles').html('최근 저장 일자: ' + data.char_dt + ' / ' + data.char_code);
+                });
+            }
+        }
+    });
+
+    // UI 백업
+    uppie(document.querySelector('#files'), function (event, formData, files) {
+        let user_email = $('#session_form').attr('email');
+        let fullPath = document.getElementById("files").files[0].path;
+        let end = fullPath.lastIndexOf('\\');
+        let first = fullPath.substring(0, end).lastIndexOf('\\') + 1;
+        let code = fullPath.substring(first, end);
+        let uploadCode = $('#session_form').attr('code');
+
+        if (code != uploadCode) {
+            alert('백업대상이 서버에 저장된 데이터와 일치하지 않습니다.\n캐릭터 코드를 다시 확인해주세요.');
+            $('#files').val('');
+            return false;
+        } else {
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', domain + '/api/v0.1/putHudBackup?code=' + code + '&email=' + user_email);
+            xhr.send(formData);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    setTimeout(function(){  alert('백업 완료'); }, 1500);
+
+                    // 초기화
+                    $('#files').val('');
+
+                    let userEmail = $('#session_form').attr('email');
+
+                    $.get(domain + '/api/v0.1/getUser?userEmail=' + userEmail, function (data) {
+                        $('#session_form').html(data.user_email);
+                        $('#file-input').remove();
+                        $('#selectedFiles').addClass('alert-info');
+                        $('#session_form').attr('code', data.char_code);
+                        $('#selectedFiles').html('최근 저장 일자: ' + data.char_dt + ' / ' + data.char_code);
+                    });
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

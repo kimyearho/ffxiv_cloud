@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>FINAL FANTASY XIV - UI REPOSITORY</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./public/assets/login.css" rel="stylesheet">
+</head>
+<body>
+<div class="register-photo">
+    <div class="form-container">
+        <div class="image-holder">
+        </div>
+        <form method="post">
+            <h2 class="text-center"><strong>계정</strong>을 입력하세요.</h2>
+            <div class="form-group">
+                <input class="form-control" type="email" id="email" name="email" placeholder="Email">
+            </div>
+            <div class="form-group"></div>
+            <div class="form-group"></div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label class="control-label" style="padding-left: 0px;">
+                        ※ 이메일은 개인식별을 위해서만 사용합니다.
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <a id="btn_login" class="btn btn-primary btn-block">Login</a>
+            </div>
+            <a href="register.html" class="already">계정이 없으신가요? '여기'를 클릭하세요</a>
+        </form>
+    </div>
+</div>
+</body>
+<script>window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min');</script>
+<script type="text/javascript">require('./source/server/renderer')</script>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

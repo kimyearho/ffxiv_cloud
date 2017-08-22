@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./public/assets/login.css" rel="stylesheet">
+</head>
+<body>
+<div class="register-photo">
+    <div class="form-container">
+        <div class="image-holder"></div>
+        <form method="post">
+            <h2 class="text-center"><strong>Create</strong> an account.</h2>
+            <div class="form-group">
+                <input class="form-control" type="email" id="email" name="email" placeholder="Email">
+            </div>
+            <div class="form-group"></div>
+            <div class="form-group"></div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label class="control-label">
+                        <input type="checkbox">이메일 수집에 동의합니다.</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <a id="btn_signup" class="btn btn-primary btn-block">Sign Up</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script>window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min');</script>
+<script type="text/javascript">require('./source/server/renderer')</script>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

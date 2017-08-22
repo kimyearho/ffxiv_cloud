@@ -1,0 +1,15 @@
+{
+  "name": "ff14Global",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "~1.6.2",
+    "jquery" : "latest",
+    "bootstrap": "latest",
+    "electron-dl": "latest",
+    "unzip" : "latest"
+  }
+}
