@@ -1,5 +1,5 @@
 # FINAL FANTASY XIV - UI Cloud
-> 파이널판타지14 글로벌 UI 저장소 (Final Fantasy XIV - UI Cloud)
+> 파이널판타지14 글로벌 UI 저장소 (Final Fantasy XIV - UI Cloud) Global Server !
 <br/>
 
 ![Imgur](https://i.imgur.com/JD330Qn.png)
