@@ -8,6 +8,7 @@
 
  * 1계정 1캐릭 지원
    - 1 Account / 1 Character Supports
+   
  * UI 및 매크로등 설정정보 서버저장 / 적용 및 백업 기능 지원
    - Local Computer FFXIV ui/macro/etc files to Server Upload !
    - Apply upload files instantly to your local computer from anywhere
