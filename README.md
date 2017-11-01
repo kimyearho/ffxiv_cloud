@@ -1,4 +1,4 @@
-# FINAL FANTASY XIV - Interface Cloud
+# FINAL FANTASY XIV - UI Cloud
 > 파이널판타지14 글로벌 UI 저장소
 <br/>
 
