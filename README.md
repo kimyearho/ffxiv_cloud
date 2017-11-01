@@ -2,7 +2,7 @@
 > 파이널판타지14 글로벌 UI 저장소
 <br/>
 
-![Imgur](http://i.imgur.com/bLlrcu6.png)
+![Imgur](https://i.imgur.com/JD330Qn.png)
 
 ## 기능정의:
 
